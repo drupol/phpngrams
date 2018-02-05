@@ -17,7 +17,7 @@ trait NGramsTrait
     }
 
     /**
-     * @param $data
+     * @param string $data
      * @param int $n
      * @param bool $cyclic
      *
@@ -28,6 +28,21 @@ trait NGramsTrait
         foreach ($this->doNgrams(str_split($data), $n, $cyclic) as $data) {
             yield implode('', $data);
         }
+    }
+
+    /**
+     * @param \Generator $ngrams
+     * @param string $substring
+     *
+     * @return float|int
+     */
+    public function frequency(\Generator $ngrams, $substring)
+    {
+        $ngrams = iterator_to_array($ngrams);
+
+        return count(array_filter($ngrams, function ($n) use ($substring) {
+            return $n === $substring;
+        }))/count($ngrams);
     }
 
     /**

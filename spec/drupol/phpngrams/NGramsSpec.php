@@ -77,4 +77,14 @@ class NGramsSpec extends ObjectBehavior
 
         $this->ngramsArray(['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd'], 3, false)->shouldIterateAs(new \ArrayIterator($result));
     }
+
+    public function it_can_calculate_the_frequency()
+    {
+        $input= 'Hold my beer';
+        $ngrams = $this->getWrappedObject()->ngramsString($input, 2);
+        $this->frequency($ngrams, 'my')->shouldBe(1/12);
+
+        $ngrams = $this->getWrappedObject()->ngramsString($input, 16, false);
+        $this->frequency($ngrams, 'Hold my beer')->shouldBe(1);
+    }
 }
