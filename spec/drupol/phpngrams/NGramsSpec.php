@@ -18,7 +18,7 @@ class NGramsSpec extends ObjectBehavior
             'he', 'el', 'll', 'lo', 'oh'
         ];
 
-        $this->ngramString('hello', 2)->shouldBe($result);
+        $this->ngramsString('hello', 2)->shouldIterateAs(new \ArrayIterator($result));
     }
 
     public function it_can_get_ngram_from_a_string_with_big_n()
@@ -27,7 +27,7 @@ class NGramsSpec extends ObjectBehavior
             'hello', 'elloh', 'llohe', 'lohel', 'ohell'
         ];
 
-        $this->ngramString('hello', 10)->shouldBe($result);
+        $this->ngramsString('hello', 10)->shouldIterateAs(new \ArrayIterator($result));
     }
 
     public function it_can_get_ngram_from_a_string_without_cycling()
@@ -36,7 +36,7 @@ class NGramsSpec extends ObjectBehavior
             'hel', 'ell', 'llo', 'lo ', 'o w', ' wo', 'wor', 'orl', 'rld'
         ];
 
-        $this->ngramString('hello world', 3, false)->shouldBe($result);
+        $this->ngramsString('hello world', 3, false)->shouldIterateAs(new \ArrayIterator($result));
     }
 
     public function it_can_get_ngram_from_an_array()
@@ -45,7 +45,7 @@ class NGramsSpec extends ObjectBehavior
             ['h', 'e'], ['e','l'], ['l','l'], ['l','o'], ['o','h']
         ];
 
-        $this->ngramArray(['h', 'e', 'l', 'l', 'o'], 2)->shouldBe($result);
+        $this->ngramsArray(['h', 'e', 'l', 'l', 'o'], 2)->shouldIterateAs(new \ArrayIterator($result));
     }
 
     public function it_can_get_ngram_from_an_array_with_big_n()
@@ -58,7 +58,7 @@ class NGramsSpec extends ObjectBehavior
             ['o','h','e','l','l'],
         ];
 
-        $this->ngramArray(['h', 'e', 'l', 'l', 'o'], 10)->shouldBe($result);
+        $this->ngramsArray(['h', 'e', 'l', 'l', 'o'], 10)->shouldIterateAs(new \ArrayIterator($result));
     }
 
     public function it_can_get_ngram_from_an_array_without_cycling()
@@ -75,6 +75,6 @@ class NGramsSpec extends ObjectBehavior
             ['r','l','d'],
         ];
 
-        $this->ngramArray(['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd'], 3, false)->shouldBe($result);
+        $this->ngramsArray(['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd'], 3, false)->shouldIterateAs(new \ArrayIterator($result));
     }
 }

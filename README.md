@@ -11,7 +11,7 @@ An n-gram of size 1 is referred to as a "unigram"; size 2 is a "bigram" (or, les
 
 ## Requirements
 
-* PHP >= 7.0,
+* PHP >= 7.0
 
 ## Installation
 
@@ -26,9 +26,9 @@ Let's say you want to find all the N-Gram of size 3 of the string **hello world*
 ```php
 $word = 'hello world';
 $ngram = new \drupol\phpngrams\NGrams();
-$ngrams = $ngram->ngramString($word, 3);
+$ngrams = $ngram->ngramsString($word, 3);
 
-print_r($ngrams);
+print_r(iterator_to_array($ngrams));
 /*
     [0] => hel
     [1] => ell
@@ -49,9 +49,9 @@ Instead of using a string, you may also use an array as input.
 ```php
 $word = ['h', 'e', 'l', 'l', 'o'];
 $ngram = new \drupol\phpngrams\NGrams();
-$ngrams = $ngram->ngramArray($word, 3);
+$ngrams = $ngram->ngramsArray($word, 3);
 
-print_r($ngrams);
+print_r(iterator_to_array($ngrams));
 /*
 Array
 (
@@ -93,6 +93,11 @@ Array
 )
 */
 ```
+
+To reduce to the maximum the memory footprint, the library returns Generators, if you want to get the complete resulting array, use [iterator_to_array()](https://secure.php.net/manual/en/function.iterator-to-array.php).
+
+The library provides and object Ngrams and a trait NgramsTrait.
+It's up to you to decide how you want to use the library.
 
 ## Tests
 
