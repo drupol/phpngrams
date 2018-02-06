@@ -2,33 +2,10 @@
 
 namespace drupol\phpngrams;
 
+use drupol\phpermutations\Iterators\NGrams;
+
 trait NGramsTrait
 {
-    /**
-     * @param array $data
-     * @param int $n
-     * @param bool $cyclic
-     *
-     * @return \Generator
-     */
-    public function ngramsArray(array $data, $n = 1, $cyclic = true)
-    {
-        return $this->doNgrams($data, $n, $cyclic);
-    }
-
-    /**
-     * @param string $data
-     * @param int $n
-     * @param bool $cyclic
-     *
-     * @return \Generator
-     */
-    public function ngramsString($data, $n = 1, $cyclic = true)
-    {
-        foreach ($this->doNgrams(str_split($data), $n, $cyclic) as $data) {
-            yield implode('', $data);
-        }
-    }
 
     /**
      * @param \Generator $ngrams
@@ -47,6 +24,32 @@ trait NGramsTrait
 
     /**
      * @param $data
+     * @param int $n
+     * @param bool $cyclic
+     *
+     * @return bool|\Generator
+     */
+    public function ngramsFactory($data, $n = 1, $cyclic = true)
+    {
+        $ngrams = [];
+
+        if (is_string($data)) {
+            foreach ($this->doNgrams(str_split($data), $n, $cyclic) as $item) {
+                yield implode('', $item);
+            }
+        }
+
+        if (is_array($data)) {
+            foreach ($this->doNgrams($data, $n, $cyclic) as $item) {
+                yield $item;
+            }
+        }
+
+        return $ngrams;
+    }
+
+    /**
+     * @param $data
      * @param $n
      * @param $cyclic
      *
@@ -55,17 +58,14 @@ trait NGramsTrait
     private function doNgrams($data, $n = 1, $cyclic = true)
     {
         $dataLength = count($data);
-
         $n = $n > $dataLength ? $dataLength : $n;
-
         $length = (false === $cyclic ? $dataLength - $n + 1 : $dataLength);
 
+        $ngrams = new NGrams($data, $n);
+
         for ($j = 0; $j < $length; $j++) {
-            $ngrams = [];
-            for ($i = $j; $i < $n + $j; $i++) {
-                $ngrams[] = $data[$i%$dataLength];
-            }
-            yield $ngrams;
+            yield array_slice($ngrams->current(), 0, $n);
+            $ngrams->rewind();
         }
     }
 }

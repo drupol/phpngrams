@@ -2,7 +2,7 @@
 
 namespace drupol\phpngrams;
 
-class NGrams extends AbstractNGrams
+class NGramsCyclic extends AbstractNGrams
 {
     /**
      * @param $data
@@ -12,6 +12,6 @@ class NGrams extends AbstractNGrams
      */
     public function ngrams($data, $n)
     {
-        return $this->ngramsFactory($data, $n, false);
+        return $this->ngramsFactory($data, $n, true);
     }
 }

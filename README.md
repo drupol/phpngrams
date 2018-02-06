@@ -19,6 +19,15 @@ Include this library in your project by doing:
 
 `composer require drupol/phpngrams`
 
+The library provides two classes:
+
+* NGrams
+* NGramsCyclic
+
+and one trait:
+
+* NGramsTrait
+
 ## Usage
 
 Let's say you want to find all the N-Gram of size 3 of the string **hello world**:
@@ -26,7 +35,7 @@ Let's say you want to find all the N-Gram of size 3 of the string **hello world*
 ```php
 $word = 'hello world';
 $ngram = new \drupol\phpngrams\NGrams();
-$ngrams = $ngram->ngramsString($word, 3);
+$ngrams = $ngram->ngrams($word, 3);
 
 print_r(iterator_to_array($ngrams));
 /*
@@ -39,8 +48,6 @@ print_r(iterator_to_array($ngrams));
     [6] => wor
     [7] => orl
     [8] => rld
-    [9] => ldh
-    [10] => dhe
 */
 ```
 
@@ -48,8 +55,8 @@ Instead of using a string, you may also use an array as input.
 
 ```php
 $word = ['h', 'e', 'l', 'l', 'o'];
-$ngram = new \drupol\phpngrams\NGrams();
-$ngrams = $ngram->ngramsArray($word, 3);
+$ngram = new \drupol\phpngrams\NGramsCyclic();
+$ngrams = $ngram->ngrams($word, 3);
 
 print_r(iterator_to_array($ngrams));
 /*
