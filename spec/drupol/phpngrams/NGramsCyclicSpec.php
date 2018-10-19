@@ -12,85 +12,22 @@ class NGramsCyclicSpec extends ObjectBehavior
         $this->shouldHaveType(NGramsCyclic::class);
     }
 
-    public function it_can_get_ngram_from_a_string()
+    public function it_can_get_ngram_from_an_array_without_cycling()
     {
         $result = [
-            'he',
-            'el',
-            'll',
-            'lo',
-            'oh',
+            ['h', 'e', 'l', 'l'],
+            ['e', 'l', 'l', 'o'],
+            ['l', 'l', 'o', ' '],
+            ['l', 'o', ' ', 'w'],
+            ['o', ' ', 'w', 'o'],
+            [' ', 'w', 'o', 'r'],
+            ['w', 'o', 'r', 'l'],
+            ['o', 'r', 'l', 'd'],
+            ['r', 'l', 'd', 'h'],
+            ['l', 'd', 'h', 'e'],
+            ['d', 'h', 'e', 'l'],
         ];
 
-        $this->ngrams('hello', 2)->shouldIterateAs(new \ArrayIterator($result));
-    }
-
-    public function it_can_get_ngram_from_a_string_with_big_n()
-    {
-        $result = [
-            'hello',
-            'elloh',
-            'llohe',
-            'lohel',
-            'ohell',
-        ];
-
-        $this->ngrams('hello', 10)->shouldIterateAs(new \ArrayIterator($result));
-    }
-
-    public function it_can_get_ngram_from_an_array()
-    {
-        $result = [
-            ['h', 'e'],
-            ['e', 'l'],
-            ['l', 'l'],
-            ['l', 'o'],
-            ['o', 'h'],
-        ];
-
-        $this->ngrams(['h', 'e', 'l', 'l', 'o'], 2)->shouldIterateAs(new \ArrayIterator($result));
-    }
-
-    public function it_can_get_ngram_from_an_array_with_cycling()
-    {
-        $result = [
-            ['h', 'e', 'l'],
-            ['e', 'l', 'l'],
-            ['l', 'l', 'o'],
-            ['l', 'o', ' '],
-            ['o', ' ', 'w'],
-            [' ', 'w', 'o'],
-            ['w', 'o', 'r'],
-            ['o', 'r', 'l'],
-            ['r', 'l', 'd'],
-            ['l', 'd', 'h'],
-            ['d', 'h', 'e'],
-        ];
-
-        $this->ngrams(['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd'], 3)->shouldIterateAs(new \ArrayIterator($result));
-    }
-
-    public function it_can_get_ngram_from_an_array_with_big_n()
-    {
-        $result = [
-            ['h', 'e', 'l', 'l', 'o'],
-            ['e', 'l', 'l', 'o', 'h'],
-            ['l', 'l', 'o', 'h', 'e'],
-            ['l', 'o', 'h', 'e', 'l'],
-            ['o', 'h', 'e', 'l', 'l'],
-        ];
-
-        $this->ngrams(['h', 'e', 'l', 'l', 'o'], 10)->shouldIterateAs(new \ArrayIterator($result));
-    }
-
-    public function it_can_calculate_the_frequency()
-    {
-        $input= 'Hold my beer';
-        $ngrams = $this->getWrappedObject()->ngrams($input, 2);
-        $this->frequency($ngrams, 'my')->shouldBe(1/12);
-
-        $input= ['h', 'e', 'l', 'l', 'o'];
-        $ngrams = $this->getWrappedObject()->ngrams($input, 2);
-        $this->frequency($ngrams, ['l', 'l'])->shouldBe(1/5);
+        $this->ngrams(['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd'], 4)->shouldIterateAs(new \ArrayIterator($result));
     }
 }

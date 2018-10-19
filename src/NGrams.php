@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace drupol\phpngrams;
 
+/**
+ * Class NGrams
+ */
 class NGrams extends AbstractNGrams
 {
     /**
-     * @param $data
-     * @param $n
-     *
-     * @return bool|\Generator
+     * {@inheritdoc}
      */
     public function ngrams($data, $n)
     {

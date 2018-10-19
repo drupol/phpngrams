@@ -1,15 +1,19 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace drupol\phpngrams;
 
 use drupol\phpermutations\Iterators\NGrams;
 
+/**
+ * Trait NGramsTrait
+ */
 trait NGramsTrait
 {
-
     /**
      * @param \Generator $ngrams
-     * @param string $substring
+     * @param string|array $substring
      *
      * @return float|int
      */
@@ -23,13 +27,13 @@ trait NGramsTrait
     }
 
     /**
-     * @param $data
+     * @param string|array $data
      * @param int $n
      * @param bool $cyclic
      *
      * @return bool|\Generator
      */
-    public function ngramsFactory($data, $n = 1, $cyclic = true)
+    public function ngramsFactory($data, int $n = 1, bool $cyclic = true)
     {
         $ngrams = [];
 
@@ -49,13 +53,13 @@ trait NGramsTrait
     }
 
     /**
-     * @param $data
-     * @param $n
-     * @param $cyclic
+     * @param array $data
+     * @param int $n
+     * @param bool $cyclic
      *
      * @return \Generator
      */
-    private function doNgrams($data, $n = 1, $cyclic = true)
+    private function doNgrams(array $data, int $n = 1, bool $cyclic = true)
     {
         $dataLength = count($data);
         $n = $n > $dataLength ? $dataLength : $n;
