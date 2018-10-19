@@ -1,5 +1,8 @@
 ## PHPNgrams
-[![Build Status](https://travis-ci.org/drupol/phpngrams.svg?branch=master)](https://travis-ci.org/drupol/phpngrams) [![Code Coverage](https://scrutinizer-ci.com/g/drupol/phpngrams/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/drupol/phpngrams/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/drupol/phpngrams/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/drupol/phpngrams/?branch=master) [![Dependency Status](https://www.versioneye.com/user/projects/5a7879940fb24f1f12d7cc8e/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5a7879940fb24f1f12d7cc8e)
+[![Build Status](https://travis-ci.org/drupol/phpngrams.svg?branch=master)](https://travis-ci.org/drupol/phpngrams)
+ [![Code Coverage](https://scrutinizer-ci.com/g/drupol/phpngrams/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/drupol/phpngrams/?branch=master)
+ [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/drupol/phpngrams/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/drupol/phpngrams/?branch=master)
+
 
 PHP N-Grams library
 
