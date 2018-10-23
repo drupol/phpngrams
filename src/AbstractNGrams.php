@@ -19,18 +19,18 @@ abstract class AbstractNGrams implements NGramsInterface
     /**
      * {@inheritdoc}
      */
-    public function frequency(\Generator $ngrams, array $substring)
+    public function frequency(\Generator $ngrams, array $subset)
     {
-        $ngrams = iterator_to_array($ngrams);
+        $ngrams = \iterator_to_array($ngrams);
 
-        return count(
-            array_filter(
+        return \count(
+            \array_filter(
                 $ngrams,
-                function ($n) use ($substring) {
-                    return $n === $substring;
+                function ($n) use ($subset) {
+                    return $n === $subset;
                 }
             )
-        )/count($ngrams);
+        )/\count($ngrams);
     }
 
     /**
@@ -56,7 +56,7 @@ abstract class AbstractNGrams implements NGramsInterface
      */
     private function doNgrams(array $data, int $n, bool $cyclic)
     {
-        $dataLength = count($data);
+        $dataLength = \count($data);
         $n = $n > $dataLength ? $dataLength : $n;
 
         $ngrams = new NGrams($data, $n);
@@ -64,7 +64,7 @@ abstract class AbstractNGrams implements NGramsInterface
         $length = (false == $cyclic ? $dataLength - $n + 1 : $dataLength);
 
         for ($j = 0; $j < $length; $j++) {
-            yield array_slice($ngrams->current(), 0, $n);
+            yield \array_slice($ngrams->current(), 0, $n);
             $ngrams->rewind();
         }
     }

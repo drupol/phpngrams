@@ -11,11 +11,11 @@ interface NGramsInterface
 {
     /**
      * @param \Generator $ngrams
-     * @param array $substring
+     * @param array $subset
      *
      * @return float|int
      */
-    public function frequency(\Generator $ngrams, array $substring);
+    public function frequency(\Generator $ngrams, array $subset);
 
     /**
      * {@inheritdoc}

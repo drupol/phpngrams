@@ -32,13 +32,13 @@ trait NGramsTrait
 
     /**
      * @param \Generator $ngrams
-     * @param string|array $substring
+     * @param array $subset
      *
      * @return float|int
      */
-    public function frequency(\Generator $ngrams, $substring)
+    public function frequency(\Generator $ngrams, array $subset)
     {
-        return $this->getNGrams()->frequency($ngrams, $substring);
+        return $this->getNGrams()->frequency($ngrams, $subset);
     }
 
     /**
@@ -47,7 +47,7 @@ trait NGramsTrait
      *
      * @return bool|\Generator
      */
-    public function ngrams($data, int $n = 1)
+    public function ngrams(array $data, int $n = 1)
     {
         return $this->getNGrams()->ngrams($data, $n);
     }
