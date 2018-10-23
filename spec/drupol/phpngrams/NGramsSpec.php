@@ -85,12 +85,19 @@ class NGramsSpec extends ObjectBehavior
 
     public function it_can_calculate_the_frequency()
     {
-        $input= str_split('Hold my beer');
-        $ngrams = $this->getWrappedObject()->ngrams($input, 2);
+        $input = 'Hold my beer';
+        $ngrams = $this->getWrappedObject()->ngrams(str_split($input), 2);
         $this->frequency($ngrams, str_split('my'))->shouldBe(1/11);
 
-        $input= ['h', 'e', 'l', 'l', 'o'];
-        $ngrams = $this->getWrappedObject()->ngrams($input, 2);
+        $input= 'hello';
+        $ngrams = $this->getWrappedObject()->ngrams(str_split($input), 2);
         $this->frequency($ngrams, ['l', 'l'])->shouldBe(1/4);
+
+        $input = '0123456789';
+        $ngrams = $this->getWrappedObject()->ngrams(str_split($input), 2);
+        $this->frequency($ngrams, [0, 1])->shouldBe(0);
+
+        $ngrams = $this->getWrappedObject()->ngrams(str_split($input), 2);
+        $this->frequency($ngrams, ['0', '1'])->shouldBe(1/9);
     }
 }
