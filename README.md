@@ -1,8 +1,12 @@
-## PHPNgrams
-[![Build Status](https://travis-ci.org/drupol/phpngrams.svg?branch=master)](https://travis-ci.org/drupol/phpngrams)
- [![Code Coverage](https://scrutinizer-ci.com/g/drupol/phpngrams/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/drupol/phpngrams/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/drupol/phpngrams/v/stable)](https://packagist.org/packages/drupol/phpngrams)
+ [![Total Downloads](https://poser.pugx.org/drupol/phpngrams/downloads)](https://packagist.org/packages/drupol/phpngrams)
+ [![Build Status](https://travis-ci.org/drupol/phpngrams.svg?branch=master)](https://travis-ci.org/drupol/phpngrams)
  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/drupol/phpngrams/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/drupol/phpngrams/?branch=master)
+ [![Code Coverage](https://scrutinizer-ci.com/g/drupol/phpngrams/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/drupol/phpngrams/?branch=master)
+ [![Mutation testing badge](https://badge.stryker-mutator.io/github.com/drupol/phpngrams/master)](https://stryker-mutator.github.io)
+ [![License](https://poser.pugx.org/drupol/phpngrams/license)](https://packagist.org/packages/drupol/phpngrams)
 
+## PHPNgrams
 
 PHP N-Grams library
 
@@ -109,10 +113,19 @@ To reduce to the maximum the memory footprint, the library returns Generators, i
 The library provides and object Ngrams and a trait NgramsTrait.
 It's up to you to decide how you want to use the library.
 
-## Tests
+## API
 
-Every time the sources are modified, [Travis](https://travis-ci.org/drupol/phpngrams), the continuous integration
-service, tests the code against those tests, this way you are aware if the changes that you are introducing are valid.
+Find the complete API documentation at [https://not-a-number.io/phpngrams](https://not-a-number.io/phpngrams).
+
+## Code quality and tests
+
+Every time changes are introduced into the library, [Travis CI](https://travis-ci.org/drupol/phpngrams/builds) run the tests.
+
+The library has tests written with [PHPSpec](http://www.phpspec.net/).
+
+Feel free to check them out in the `spec` directory. Run `composer phpspec` to trigger the tests.
+
+[PHPInfection](https://github.com/infection/infection) is used to ensure that your code is properly tested, run `composer infection` to test your code.
 
 # Contributing
 

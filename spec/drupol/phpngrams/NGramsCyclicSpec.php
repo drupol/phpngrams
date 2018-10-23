@@ -12,8 +12,26 @@ class NGramsCyclicSpec extends ObjectBehavior
         $this->shouldHaveType(NGramsCyclic::class);
     }
 
-    public function it_can_get_ngram_from_an_array_without_cycling()
+    public function it_can_get_ngrams()
     {
+        $input = 'hello world';
+
+        $result = [
+            ['h'],
+            ['e'],
+            ['l'],
+            ['l'],
+            ['o'],
+            [' '],
+            ['w'],
+            ['o'],
+            ['r'],
+            ['l'],
+            ['d'],
+        ];
+        $this->ngrams(str_split($input))->shouldIterateAs(new \ArrayIterator($result));
+        $this->ngrams(str_split($input))->shouldHaveCount(11);
+
         $result = [
             ['h', 'e', 'l', 'l'],
             ['e', 'l', 'l', 'o'],
@@ -27,7 +45,39 @@ class NGramsCyclicSpec extends ObjectBehavior
             ['l', 'd', 'h', 'e'],
             ['d', 'h', 'e', 'l'],
         ];
+        $this->ngrams(str_split($input), 4)->shouldIterateAs(new \ArrayIterator($result));
+        $this->ngrams(str_split($input))->shouldHaveCount(11);
 
-        $this->ngrams(['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd'], 4)->shouldIterateAs(new \ArrayIterator($result));
+        $result = [
+            ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l'],
+            ['e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd'],
+            ['l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', 'h'],
+            ['l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', 'h', 'e'],
+            ['o', ' ', 'w', 'o', 'r', 'l', 'd', 'h', 'e', 'l'],
+            [' ', 'w', 'o', 'r', 'l', 'd', 'h', 'e', 'l', 'l'],
+            ['w', 'o', 'r', 'l', 'd', 'h', 'e', 'l', 'l', 'o'],
+            ['o', 'r', 'l', 'd', 'h', 'e', 'l', 'l', 'o', ' '],
+            ['r', 'l', 'd', 'h', 'e', 'l', 'l', 'o', ' ', 'w'],
+            ['l', 'd', 'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o'],
+            ['d', 'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r'],
+        ];
+        $this->ngrams(str_split($input), 10)->shouldIterateAs(new \ArrayIterator($result));
+        $this->ngrams(str_split($input))->shouldHaveCount(11);
+
+        $result = [
+            ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd'],
+            ['e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', 'h'],
+            ['l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', 'h', 'e'],
+            ['l', 'o', ' ', 'w', 'o', 'r', 'l', 'd', 'h', 'e', 'l'],
+            ['o', ' ', 'w', 'o', 'r', 'l', 'd', 'h', 'e', 'l', 'l'],
+            [' ', 'w', 'o', 'r', 'l', 'd', 'h', 'e', 'l', 'l', 'o'],
+            ['w', 'o', 'r', 'l', 'd', 'h', 'e', 'l', 'l', 'o', ' '],
+            ['o', 'r', 'l', 'd', 'h', 'e', 'l', 'l', 'o', ' ', 'w'],
+            ['r', 'l', 'd', 'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o'],
+            ['l', 'd', 'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r'],
+            ['d', 'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l'],
+        ];
+        $this->ngrams(str_split($input), 11)->shouldIterateAs(new \ArrayIterator($result));
+        $this->ngrams(str_split($input))->shouldHaveCount(11);
     }
 }

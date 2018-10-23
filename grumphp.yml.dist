@@ -42,5 +42,5 @@ parameters:
       ignore_parse_errors: false
       triggered_by: ['composer.json', 'composer.lock', '*.php']
     infection:
-      min_msi: 50
-      min_covered_msi: 50
+      min_msi: 90
+      min_covered_msi: 90

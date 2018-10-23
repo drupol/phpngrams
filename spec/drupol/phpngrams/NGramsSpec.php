@@ -15,22 +15,34 @@ class NGramsSpec extends ObjectBehavior
     public function it_can_get_ngram_from_a_string()
     {
         $result = [
-            'he',
-            'el',
-            'll',
-            'lo',
+            str_split('h'),
+            str_split('e'),
+            str_split('l'),
+            str_split('l'),
+            str_split('o'),
         ];
 
-        $this->ngrams('hello', 2)->shouldIterateAs(new \ArrayIterator($result));
+        $this->ngrams(str_split('hello'))->shouldIterateAs(new \ArrayIterator($result));
+        $this->ngrams(str_split('hello'))->shouldHaveCount(5);
+
+        $result = [
+            str_split('he'),
+            str_split('el'),
+            str_split('ll'),
+            str_split('lo'),
+        ];
+
+        $this->ngrams(str_split('hello'), 2)->shouldIterateAs(new \ArrayIterator($result));
+        $this->ngrams(str_split('hello'), 2)->shouldHaveCount(4);
     }
 
     public function it_can_get_ngram_from_a_string_with_big_n()
     {
         $result = [
-            'hello',
+            str_split('hello'),
         ];
 
-        $this->ngrams('hello', 10)->shouldIterateAs(new \ArrayIterator($result));
+        $this->ngrams(str_split('hello'), 10)->shouldIterateAs(new \ArrayIterator($result));
     }
 
     public function it_can_get_ngram_from_an_array()
@@ -73,9 +85,9 @@ class NGramsSpec extends ObjectBehavior
 
     public function it_can_calculate_the_frequency()
     {
-        $input= 'Hold my beer';
+        $input= str_split('Hold my beer');
         $ngrams = $this->getWrappedObject()->ngrams($input, 2);
-        $this->frequency($ngrams, 'my')->shouldBe(1/11);
+        $this->frequency($ngrams, str_split('my'))->shouldBe(1/11);
 
         $input= ['h', 'e', 'l', 'l', 'o'];
         $ngrams = $this->getWrappedObject()->ngrams($input, 2);

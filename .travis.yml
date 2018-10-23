@@ -9,14 +9,28 @@ cache:
     - $HOME/.composer/cache
 
 php:
-  - 7.1
-  - 7.2
+- 7.1
+- 7.2
 
 install:
-  - composer install
-
-after_success:
-  - composer scrutinizer
+- composer install
 
 script:
-  - composer grumphp
+- composer grumphp
+
+after_success:
+- phpenv config-rm xdebug.ini
+- composer scrutinizer
+- composer apigen
+
+matrix:
+    fast_finish: true
+
+deploy:
+    local-dir: build/docs
+    provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    keep-history: true
+    on:
+        branch: master
