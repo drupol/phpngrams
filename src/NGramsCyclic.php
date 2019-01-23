@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace drupol\phpngrams;
 
 /**
- * Class NGramsCyclic
+ * Class NGramsCyclic.
  */
 class NGramsCyclic extends AbstractNGrams
 {

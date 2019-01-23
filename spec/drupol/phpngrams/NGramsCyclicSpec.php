@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace spec\drupol\phpngrams;
 
 use drupol\phpngrams\NGramsCyclic;
@@ -7,11 +9,6 @@ use PhpSpec\ObjectBehavior;
 
 class NGramsCyclicSpec extends ObjectBehavior
 {
-    public function it_is_initializable()
-    {
-        $this->shouldHaveType(NGramsCyclic::class);
-    }
-
     public function it_can_get_ngrams()
     {
         $input = 'hello world';
@@ -79,5 +76,10 @@ class NGramsCyclicSpec extends ObjectBehavior
         ];
         $this->ngrams(str_split($input), 11)->shouldIterateAs(new \ArrayIterator($result));
         $this->ngrams(str_split($input))->shouldHaveCount(11);
+    }
+
+    public function it_is_initializable()
+    {
+        $this->shouldHaveType(NGramsCyclic::class);
     }
 }

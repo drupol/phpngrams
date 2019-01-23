@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace drupol\phpngrams;
 
 /**
- * Interface NGramsInterface
+ * Interface NGramsInterface.
  */
 interface NGramsInterface
 {
@@ -17,8 +17,5 @@ interface NGramsInterface
      */
     public function frequency(\Generator $ngrams, array $subset);
 
-    /**
-     * {@inheritdoc}
-     */
     public function ngrams(array $data, int $n);
 }

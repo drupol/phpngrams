@@ -7,15 +7,10 @@ namespace drupol\phpngrams;
 use drupol\phpermutations\Iterators\NGrams;
 
 /**
- * Class AbstractNGrams
+ * Class AbstractNGrams.
  */
 abstract class AbstractNGrams implements NGramsInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    abstract public function ngrams(array $data, int $n = 1);
-
     /**
      * {@inheritdoc}
      */
@@ -30,8 +25,13 @@ abstract class AbstractNGrams implements NGramsInterface
                     return $n === $subset;
                 }
             )
-        )/\count($ngrams);
+        ) / \count($ngrams);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    abstract public function ngrams(array $data, int $n = 1);
 
     /**
      * @param array $data
@@ -61,9 +61,9 @@ abstract class AbstractNGrams implements NGramsInterface
 
         $ngrams = new NGrams($data, $n);
 
-        $length = (false == $cyclic ? $dataLength - $n + 1 : $dataLength);
+        $length = (false === $cyclic ? $dataLength - $n + 1 : $dataLength);
 
-        for ($j = 0; $j < $length; $j++) {
+        for ($j = 0; $j < $length; ++$j) {
             yield \array_slice($ngrams->current(), 0, $n);
             $ngrams->rewind();
         }

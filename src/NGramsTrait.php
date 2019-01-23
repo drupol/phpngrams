@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace drupol\phpngrams;
 
 /**
- * Trait NGramsTrait
+ * Trait NGramsTrait.
  */
 trait NGramsTrait
 {
@@ -13,22 +13,6 @@ trait NGramsTrait
      * @var \drupol\phpngrams\NGramsInterface
      */
     private $ngrams;
-
-    /**
-     * @param \drupol\phpngrams\NGramsInterface $ngrams
-     */
-    public function setNgram(NGramsInterface $ngrams)
-    {
-        $this->ngrams = $ngrams;
-    }
-
-    /**
-     * @return \drupol\phpngrams\NGramsInterface
-     */
-    public function getNGrams(): NGramsInterface
-    {
-        return $this->ngrams;
-    }
 
     /**
      * @param \Generator $ngrams
@@ -42,7 +26,15 @@ trait NGramsTrait
     }
 
     /**
-     * @param string|array $data
+     * @return \drupol\phpngrams\NGramsInterface
+     */
+    public function getNGrams(): NGramsInterface
+    {
+        return $this->ngrams;
+    }
+
+    /**
+     * @param array|string $data
      * @param int $n
      *
      * @return bool|\Generator
@@ -50,5 +42,13 @@ trait NGramsTrait
     public function ngrams(array $data, int $n = 1)
     {
         return $this->getNGrams()->ngrams($data, $n);
+    }
+
+    /**
+     * @param \drupol\phpngrams\NGramsInterface $ngrams
+     */
+    public function setNgram(NGramsInterface $ngrams)
+    {
+        $this->ngrams = $ngrams;
     }
 }
