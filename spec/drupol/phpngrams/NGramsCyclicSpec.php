@@ -26,8 +26,8 @@ class NGramsCyclicSpec extends ObjectBehavior
             ['l'],
             ['d'],
         ];
-        $this->ngrams(str_split($input))->shouldIterateAs(new \ArrayIterator($result));
-        $this->ngrams(str_split($input))->shouldHaveCount(11);
+        $this->ngrams(\str_split($input))->shouldIterateAs(new \ArrayIterator($result));
+        $this->ngrams(\str_split($input))->shouldHaveCount(11);
 
         $result = [
             ['h', 'e', 'l', 'l'],
@@ -42,8 +42,8 @@ class NGramsCyclicSpec extends ObjectBehavior
             ['l', 'd', 'h', 'e'],
             ['d', 'h', 'e', 'l'],
         ];
-        $this->ngrams(str_split($input), 4)->shouldIterateAs(new \ArrayIterator($result));
-        $this->ngrams(str_split($input))->shouldHaveCount(11);
+        $this->ngrams(\str_split($input), 4)->shouldIterateAs(new \ArrayIterator($result));
+        $this->ngrams(\str_split($input))->shouldHaveCount(11);
 
         $result = [
             ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l'],
@@ -58,8 +58,8 @@ class NGramsCyclicSpec extends ObjectBehavior
             ['l', 'd', 'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o'],
             ['d', 'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r'],
         ];
-        $this->ngrams(str_split($input), 10)->shouldIterateAs(new \ArrayIterator($result));
-        $this->ngrams(str_split($input))->shouldHaveCount(11);
+        $this->ngrams(\str_split($input), 10)->shouldIterateAs(new \ArrayIterator($result));
+        $this->ngrams(\str_split($input))->shouldHaveCount(11);
 
         $result = [
             ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd'],
@@ -74,8 +74,8 @@ class NGramsCyclicSpec extends ObjectBehavior
             ['l', 'd', 'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r'],
             ['d', 'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l'],
         ];
-        $this->ngrams(str_split($input), 11)->shouldIterateAs(new \ArrayIterator($result));
-        $this->ngrams(str_split($input))->shouldHaveCount(11);
+        $this->ngrams(\str_split($input), 11)->shouldIterateAs(new \ArrayIterator($result));
+        $this->ngrams(\str_split($input))->shouldHaveCount(11);
     }
 
     public function it_is_initializable()

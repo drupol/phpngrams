@@ -4,8 +4,6 @@
     "keywords": ["n-grams", "ngram", "ngrams"],
     "type": "library",
     "license": "MIT",
-    "prefer-stable": true,
-    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Pol Dellaiera",
@@ -23,9 +21,9 @@
     },
     "require-dev": {
         "drupol/php-conventions": "^1",
-        "monolog/monolog": "^1.0",
-        "php-http/guzzle6-adapter": "^1.1",
-        "scrutinizer/ocular": "^1.3"
+        "scrutinizer/ocular": "^1",
+        "apigen/apigen": "dev-master#85290e8",
+        "roave/better-reflection": "dev-master#0009c64"
     },
     "scripts": {
         "apigen": "./vendor/bin/apigen generate src --destination build/docs",
@@ -35,7 +33,7 @@
     },
     "extra": {
         "grumphp": {
-            "config-default-path": "vendor/drupol/php-conventions/config/grumphp.yml"
+            "config-default-path": "vendor/drupol/php-conventions/config/php7/grumphp.yml"
         }
     }
 }
