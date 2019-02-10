@@ -12,7 +12,7 @@ PHP N-Grams library
 
 ## Introduction
 
-In the fields of computational linguistics and probability, an n-gram is a contiguous sequence of n items from a given sample of text or speech. The items can be phonemes, syllables, letters, words or base pairs according to the application. The n-grams typically are collected from a text or speech corpus. When the items are words, n-grams may also be called shingles.
+In the fields of computational linguistics, machine-learning and probability, an n-gram is a contiguous sequence of n items from a given sample of text or speech. The items can be phonemes, syllables, letters, words or base pairs according to the application. The n-grams typically are collected from a text or speech corpus. When the items are words, n-grams may also be called shingles.
 
 An n-gram of size 1 is referred to as a "unigram"; size 2 is a "bigram" (or, less commonly, a "digram"); size 3 is a "trigram". Larger sizes are sometimes referred to by the value of n in modern language, e.g., "four-gram", "five-gram", and so on. (More on [Wikipedia](https://en.wikipedia.org/wiki/N-gram))
 
@@ -37,81 +37,149 @@ and one trait:
 
 ## Usage
 
-Let's say you want to find all the N-Gram of size 3 of the string **hello world**:
-
 ```php
+<?php
+
+declare(strict_types = 1);
+
+namespace drupol\phpngrams\tests;
+
+use drupol\phpngrams\NGrams;
+use drupol\phpngrams\NGramsCyclic;
+
+include 'vendor/autoload.php';
+
 $word = 'hello world';
-$ngram = new \drupol\phpngrams\NGrams();
-$ngrams = $ngram->ngrams($word, 3);
+$ngram = new NGrams();
+$ngrams = $ngram->ngrams(str_split($word), 3);
 
 print_r(iterator_to_array($ngrams));
 /*
-    [0] => hel
-    [1] => ell
-    [2] => llo
-    [3] => lo
-    [4] => o w
-    [5] =>  wo
-    [6] => wor
-    [7] => orl
-    [8] => rld
+[
+    0 =>
+        [
+            0 => 'h',
+            1 => 'e',
+            2 => 'l',
+        ],
+    1 =>
+        [
+            0 => 'e',
+            1 => 'l',
+            2 => 'l',
+        ],
+    2 =>
+        [
+            0 => 'l',
+            1 => 'l',
+            2 => 'o',
+        ],
+    3 =>
+        [
+            0 => 'l',
+            1 => 'o',
+            2 => ' ',
+        ],
+    4 =>
+        [
+            0 => 'o',
+            1 => ' ',
+            2 => 'w',
+        ],
+    5 =>
+        [
+            0 => ' ',
+            1 => 'w',
+            2 => 'o',
+        ],
+    6 =>
+        [
+            0 => 'w',
+            1 => 'o',
+            2 => 'r',
+        ],
+    7 =>
+        [
+            0 => 'o',
+            1 => 'r',
+            2 => 'l',
+        ],
+    8 =>
+        [
+            0 => 'r',
+            1 => 'l',
+            2 => 'd',
+        ],
+];
 */
-```
 
-Instead of using a string, you may also use an array as input.
-
-```php
-$word = ['h', 'e', 'l', 'l', 'o'];
-$ngram = new \drupol\phpngrams\NGramsCyclic();
-$ngrams = $ngram->ngrams($word, 3);
+$word = 'hello world';
+$ngram = new NGramsCyclic();
+$ngrams = $ngram->ngrams(str_split($word), 3);
 
 print_r(iterator_to_array($ngrams));
 /*
-Array
-(
-    [0] => Array
-        (
-            [0] => h
-            [1] => e
-            [2] => l
-        )
-
-    [1] => Array
-        (
-            [0] => e
-            [1] => l
-            [2] => l
-        )
-
-    [2] => Array
-        (
-            [0] => l
-            [1] => l
-            [2] => o
-        )
-
-    [3] => Array
-        (
-            [0] => l
-            [1] => o
-            [2] => h
-        )
-
-    [4] => Array
-        (
-            [0] => o
-            [1] => h
-            [2] => e
-        )
-
-)
+[
+    0 => [
+            0 => 'h',
+            1 => 'e',
+            2 => 'l',
+        ],
+    1 => [
+            0 => 'e',
+            1 => 'l',
+            2 => 'l',
+        ],
+    2 => [
+            0 => 'l',
+            1 => 'l',
+            2 => 'o',
+        ],
+    3 => [
+            0 => 'l',
+            1 => 'o',
+            2 => ' ',
+        ],
+    4 => [
+            0 => 'o',
+            1 => ' ',
+            2 => 'w',
+        ],
+    5 => [
+            0 => ' ',
+            1 => 'w',
+            2 => 'o',
+        ],
+    6 => [
+            0 => 'w',
+            1 => 'o',
+            2 => 'r',
+        ],
+    7 => [
+            0 => 'o',
+            1 => 'r',
+            2 => 'l',
+        ],
+    8 => [
+            0 => 'r',
+            1 => 'l',
+            2 => 'd',
+        ],
+    9 => [
+            0 => 'l',
+            1 => 'd',
+            2 => 'h',
+        ],
+    10 => [
+            0 => 'd',
+            1 => 'h',
+            2 => 'e',
+        ],
+];
 */
 ```
 
 To reduce to the maximum the memory footprint, the library returns Generators, if you want to get the complete resulting array, use [iterator_to_array()](https://secure.php.net/manual/en/function.iterator-to-array.php).
-
-The library provides and object Ngrams and a trait NgramsTrait.
-It's up to you to decide how you want to use the library.
 
 ## API
 
