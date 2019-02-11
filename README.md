@@ -49,9 +49,12 @@ use drupol\phpngrams\NGramsCyclic;
 
 include 'vendor/autoload.php';
 
-$word = 'hello world';
-$ngram = new NGrams();
-$ngrams = $ngram->ngrams(str_split($word), 3);
+$string = 'hello world';
+
+// Better use preg_split() than str_split() in case of UTF8 strings.
+$chars = preg_split('/(?!^)(?=.)/u', $string);
+
+$ngrams = (new NGrams())->ngrams($chars, 3);
 
 print_r(iterator_to_array($ngrams));
 /*
@@ -113,9 +116,12 @@ print_r(iterator_to_array($ngrams));
 ];
 */
 
-$word = 'hello world';
-$ngram = new NGramsCyclic();
-$ngrams = $ngram->ngrams(str_split($word), 3);
+$string = 'hello world';
+
+// Better use preg_split() than str_split() in case of UTF8 strings.
+$chars = preg_split('/(?!^)(?=.)/u', $string);
+
+$ngrams = (new NGramsCyclic())->ngrams($chars, 3);
 
 print_r(iterator_to_array($ngrams));
 /*
