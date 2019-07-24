@@ -47,7 +47,7 @@ trait NGramsTrait
     /**
      * @param \drupol\phpngrams\NGramsInterface $ngrams
      */
-    public function setNgram(NGramsInterface $ngrams)
+    public function setNgram(NGramsInterface $ngrams): void
     {
         $this->ngrams = $ngrams;
     }

@@ -16,12 +16,12 @@ abstract class AbstractNGrams implements NGramsInterface
      */
     public function frequency(\Generator $ngrams, array $subset)
     {
-        $ngrams = \iterator_to_array($ngrams);
+        $ngrams = iterator_to_array($ngrams);
 
         return \count(
-            \array_filter(
+            array_filter(
                 $ngrams,
-                function ($n) use ($subset) {
+                static function ($n) use ($subset) {
                     return $n === $subset;
                 }
             )
